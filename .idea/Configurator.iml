@@ -11,8 +11,9 @@
       <excludeFolder url="file://$MODULE_DIR$/src/Configurator.egg-info" />
       <excludeFolder url="file://$MODULE_DIR$/.tox" />
       <excludeFolder url="file://$MODULE_DIR$/.mypy_cache" />
+      <excludeFolder url="file://$MODULE_DIR$/venv39" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (Configurator)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
