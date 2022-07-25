@@ -54,7 +54,8 @@ logger = logging.getLogger(__title__)
 class Settings:
     version: int = 1
     last_settings_file: Path = field(
-        default=Path("instance_settings.json"), metadata={"convert": Path}
+        default=Path("instance_settings.json"),
+        metadata={"convert": (lambda s: Path(s).resolve())},
     )
 
     @classmethod
