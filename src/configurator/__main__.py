@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from dataclasses import field
 from dataclasses import fields
 from pathlib import Path
-from typing import Any, List, Optional, Sequence, Type, TypeVar
+from typing import Any, Optional, Sequence, Type, TypeVar
 
 import wx
 
@@ -22,7 +22,7 @@ T = TypeVar("T")
 class Arguments:
     verbose: bool = field(
         metadata={
-            "name_or_flags": ["-v", "--verbose"],
+            "name_or_flags": ("-v", "--verbose"),
             "default": False,
             "required": False,
             "action": "store_true",
@@ -31,7 +31,7 @@ class Arguments:
     )
     settings: Path = field(
         metadata={
-            "name_or_flags": ["-c", "--settings"],
+            "name_or_flags": ("-c", "--settings"),
             "default": "./settings.json",
             "required": False,
             "help": 'The path to the settings file. [default: "./settings.json"]',
@@ -47,9 +47,7 @@ class Arguments:
         for cls_field in fields(cls):
             metadata = dict(cls_field.metadata)
             metadata.pop("convert", None)
-            name_or_flags = tuple(
-                metadata.pop("name_or_flags") if "name_or_flags" in metadata else []
-            )
+            name_or_flags = metadata.pop("name_or_flags", tuple())
             parser.add_argument(*name_or_flags, **metadata)
 
         parsed = vars(parser.parse_args(args))
